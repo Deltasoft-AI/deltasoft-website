@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Deltasoft" property="og:title" />
     <meta content="© Deltasoft 2023" property="og:site_name" />
-    <meta name="description" content="Discover the future with Deltasoft, the leading AI and Software platform built for endless possibilities. Explore our powerful tools, advanced algorithms, and cutting-edge technology to unlock new horizons. Join us on a journey of innovation, collaboration, and limitless potential. Together, let's shape the world of tomorrow." />
+    <meta name="description" content="Discover the future with Deltasoft, the leading AI and Software platform built for endless possibilities. Explore our powerful tools, advanced algorithms, and cutting-edge technology to unlock new horizons. Join us on a journey of innovation, collaboration, and limitless potential. Together, let&apos;s shape the world of tomorrow." />
     <meta content="Discover the future with Deltasoft, the leading AI and Software platform built for endless possibilities." property="og:description" />
     <meta content='https://deltasoft-ai.netlify.app/apple-touch-icon.png' property='og:image' />
     <meta name="keywords" content="Deltasoft AI, Deltasoft Ai, Deltasoft, AI, Ai, Deltasoft-AI, Deltasoft-Ai, deltasoft, deltasoft ai, deltasoft-ai, ai" />
