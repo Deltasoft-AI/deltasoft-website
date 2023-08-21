@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scrollbar-width: 6px;
+  scrollbar-color: #4f46e5 rgba(219, 219, 220, 0);
+  transition: all .2s;
+  scroll-behavior: smooth;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(219, 219, 220, 0);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #4f46e5;
+  border-radius: 99999px;
+}
+.dropdown-block:hover .dropdown-container{
+  display: block !important;
+}
