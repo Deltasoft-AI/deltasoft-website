@@ -22,6 +22,38 @@
   background-color: #4f46e5;
   border-radius: 99999px;
 }
+.image_full{
+  display:block;
+ }
+
+.image_mobile{
+ display:none;
+}
+
+@media (max-width: 640px) and (min-width: 320px){
+ .image_full{
+  display:none;
+ }
+
+ .image_mobile{
+  display:block;
+ }
+}
+
+/* Hide the image on screens where the width is more than the image's width */
+@media (max-width: 950px) {
+  .image-wrapper {
+    display: none;
+  }
+}
+
+/* Hide the image on screens where the height is more than the image's height */
+@media (min-height: 935px) {
+  .image-wrapper {
+    display: none;
+  }
+}
+
 .dropdown-block:hover .dropdown-container{
   display: block !important;
 }
