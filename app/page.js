@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 export default function Home() {
   return (
     <main>
@@ -11,7 +9,8 @@ export default function Home() {
         aria-hidden="true">
         <div
           className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#2563eb] to-[#2563eb] opacity-40 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+          style={{clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'}}
+>
         </div>
       </div>
       <div className="mx-auto max-w-2xl py-8 sm:py-8 lg:py-8">
@@ -44,7 +43,7 @@ export default function Home() {
         aria-hidden="true">
         <div
           className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr v opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+          style={{clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'}}>
         </div>
       </div>
     </div>
@@ -87,11 +86,11 @@ export default function Home() {
         <p className="mt-6 text-lg leading-8 text-gray-600">Experience the future of AI interaction with <span
             className="font-semibold leading-6 text-indigo-600">Deltasoft AI</span>. Enjoy secure and private interactions
           anytime, anywhere. Be amazed by our seamless accessibility and cutting-edge technology.</p>
-        <br>
+        <br />
         <p className="text-lg font-semibold leading-6 text-indigo-600">Let us help take your AI interactions to the next
           level.</p>
-        <br>
-        <br>
+        <br />
+        <br />
         <a href="https://discord.gg/AxUTv9Actu"
           className="rounded-md bg-blue-700 px-10 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">Try
           it now <span aria-hidden="true">→</span></a>
@@ -101,7 +100,7 @@ export default function Home() {
       <div className="mx-auto mt-20 max-w-5xl md:max-w-2xl sm:mt-14 lg:mt-20 lg:max-w-5xl">
         <div className="flex flex-wrap lg:gap-0 gap-12">
           <div className="w-full lg:w-1/2">
-            <img className="rounded-3xl" src="https://i.ibb.co/4Y2SLY6/image-10.png">
+            <img className="rounded-3xl" src="https://i.ibb.co/4Y2SLY6/image-10.png" />
           </div>
           <div className="w-full lg:w-1/2 mx-auto lg:max-w-2xl lg:max-w-4xl">
             <div className="flex flex-col gap-8 justify-center h-full">
@@ -217,8 +216,8 @@ export default function Home() {
           </div>
         </div>
         <div className="relative mt-16 h-80 lg:mt-8">
-          <img className="image_full absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="https://i.ibb.co/jfhCMhK/Deltasoft-AI-Server.png" alt="App screenshot" width="1824" height="1080">
-          <img className="image_mobile absolute left-0 top-0 rounded-3xl " src="https://i.ibb.co/jZRskgd/Group-2-1.png">
+          <img className="image_full absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="https://i.ibb.co/jfhCMhK/Deltasoft-AI-Server.png" alt="App screenshot" width="1824" height="1080" />
+          <img className="image_mobile absolute left-0 top-0 rounded-3xl " src="https://i.ibb.co/jZRskgd/Group-2-1.png" />
         </div>
       </div>
     </div>
@@ -235,7 +234,7 @@ export default function Home() {
       className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center">
     </div>
     <div className="mx-auto max-w-2xl lg:max-w-4xl">
-      <img className="mx-auto h-12" src="https://i.ibb.co/hRjsjwt/Group-18-3.png" alt="">
+      <img className="mx-auto h-12" src="https://i.ibb.co/hRjsjwt/Group-18-3.png" alt="" />
       <figure className="mt-10">
         <blockquote className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
           <p>“Wow, I've been using Deltasoft AI on Discord, powered by OpenAI, and it's seriously awesome! Unlike
@@ -243,7 +242,7 @@ export default function Home() {
         </blockquote>
         <figcaption className="mt-10">
           <img className="mx-auto h-10 w-10 rounded-full"
-            src="https://cdn.discordapp.com/avatars/905434578926313512/1052879383a28d7bb31472bc914655d4.webp" alt="">
+            src="https://cdn.discordapp.com/avatars/905434578926313512/1052879383a28d7bb31472bc914655d4.webp" alt="" />
           <div className="mt-4 flex items-center justify-center space-x-3 text-base">
             <div className="font-semibold text-gray-900">Alex Toucan</div>
             <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" className="fill-gray-900">
@@ -272,10 +271,6 @@ export default function Home() {
       </div>
 
 
-      <!--
-      <img className="rounded-3xl" src="https://i.ibb.co/pZSc57w/astrocore-website.png">
-      -->
-
     </div>
 
 
@@ -300,31 +295,11 @@ export default function Home() {
           </div>
           <div className="relative mt-16 h-80 lg:mt-8">
             <img className="absolute left-0 top-0 w-[40rem] max-w-none rounded-md"
-              src="https://i.ibb.co/RyvV4W8/Group-16-1.png" alt="App screenshot" width="1824" height="1080">
+              src="https://i.ibb.co/RyvV4W8/Group-16-1.png" alt="App screenshot" width="1824" height="1080" />
           </div>
         </div>
       </div>
     </div>
-    <!--
-  <div className="bg-white">
-    <div className="mx-auto max-w-7xl pt-24 sm:px-6 sm:pt-24 lg:px-8">
-      <div className="relative isolate overflow-hidden bg-slate-100 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
-
-        <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Astrocore redesign</h2>
-          <p className="mt-6 text-lg font-semibold leading-8 text-gray-700">Embrace the refined <span className="font-semibold leading-6 text-fuchsia-700">Astrocore</span> website, designed to elevate their brand while seamlessly guiding clients towards exceptional website creation experiences.</p>
-          <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-            <a href="#" className="rounded-md bg-fuchsia-700 px-5 py-2.5 text-sm font-semibold text-gray-200 shadow-sm hover:bg-fuchsia-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Live demo</a>
-            <a href="#" className="text-sm font-semibold leading-6 text-fuchsia-700">Learn more <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-        <div className="relative mt-16 h-80 lg:mt-8">
-          <img className="absolute left-0 top-0 w-[40rem] max-w-none rounded-2xl" src="https://i.ibb.co/pZSc57w/astrocore-website.png" alt="App screenshot" width="1824" height="1080">
-        </div>
-      </div>
-    </div>
-  </div>
--->
   </div>
 
 
@@ -407,13 +382,13 @@ export default function Home() {
           </ul>
         </div>
       </div>
-      <br>
-      <br>
+      <br />
+      <br />
       <div className="mx-auto max-w-3xl sm:text-center">
-        <h2 className="text-3xl font-semi tracking-tight text-gray-900 sm:text-4xl">Need something bigger?<br><span
+        <h2 className="text-3xl font-semi tracking-tight text-gray-900 sm:text-4xl">Need something bigger?<br /><span
             className=" font-bold sm:text-5xl">Wow.</span></h2>
-        <br>
-        <br>
+        <br />
+        <br />
         <a href="#"
           className="rounded-md bg-blue-700 px-14 py-3 text-lg font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">Contact
           us</a>
@@ -424,19 +399,6 @@ export default function Home() {
 
 
 
-
-
-
-
-
-
-
-
-  <style>
-    *:focus {
-      outline: none;
-    }
-  </style>
 
   <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -482,7 +444,8 @@ export default function Home() {
     </div>
     <div className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
       <div className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#2563eb] to-[#2563eb] opacity-30"
-        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+        style={{clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'}}
+        >
       </div>
     </div>
 

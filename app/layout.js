@@ -1,4 +1,6 @@
 import './globals.css'
+import './globals.js'
+import Nav from './nav.js'
 
 export default function RootLayout({ children }) {
   return (
@@ -33,7 +35,10 @@ export default function RootLayout({ children }) {
         <meta name="twitter:image:alt" content="Deltasoft logo" />
         <title>Deltasoft</title>
       </head>
-      <body>{children}</body>
+      <body>
+      <Nav />
+        {children}
+      </body>
     </html>
   )
 }

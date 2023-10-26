@@ -1,4 +1,6 @@
-<header className="relative z-50">
+export default function Nav() {
+  return (
+  <header className="relative z-50">
 <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
   <div className="flex lg:flex-1">
     <a href="/" className="-m-1.5 p-1.5">
@@ -76,11 +78,6 @@
 
   </div>
 </nav>
-<script>
-  function toggleMenuVisibility() {
-    document.getElementById("mobileMenu").classNameList.toggle("hidden");
-  }
-</script>
 <div id="mobileMenu" className="lg:hidden hidden" role="dialog" aria-modal="true">
   <div className="fixed inset-0 z-10"></div>
   <div
@@ -88,7 +85,7 @@
     <div className="flex items-center justify-between">
       <a href="/" className="-m-1.5 p-1.5">
         <span className="sr-only">Deltasoft</span>
-        <img className="h-8 w-auto" src="https://i.ibb.co/BBWm0p3/Frame-1.png" alt="">
+        <img className="h-8 w-auto" src="https://i.ibb.co/BBWm0p3/Frame-1.png" alt="" />
       </a>
       <button onclick="toggleMenuVisibility()" type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">
         <span className="sr-only">Close menu</span>
@@ -103,10 +100,7 @@
         <div className="space-y-2 py-6">
           <div className="-mx-3">
             <script>
-              function toggleMenu() {
-                document.getElementById("menuIcon").classNameList.toggle("rotate-180");
-                document.getElementById("menu").classNameList.toggle("hidden");
-              }
+
             </script>
             <button onclick="toggleMenu()" type="button"
               className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -119,8 +113,7 @@
                   clip-rule="evenodd" />
               </svg>
             </button>
-            <!-- 'Product' sub-menu, show/hide based on menu state. -->
-            <div id="menu" className="hidden mt-2 space-y-2" id="disclosure-1">
+            <div id="menu" className="hidden mt-2 space-y-2">
               <a href="#"
                 className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Analytics</a>
               <a href="#"
@@ -140,3 +133,4 @@
   </div>
 </div>
 </header>
+)}
