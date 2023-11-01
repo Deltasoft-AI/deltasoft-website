@@ -1,6 +1,7 @@
 import './globals.css'
 import './globals.js'
 import Nav from './nav.js'
+import Footer from './footer.js'
 
 export default function RootLayout({ children }) {
   return (
@@ -36,8 +37,9 @@ export default function RootLayout({ children }) {
         <title>Deltasoft</title>
       </head>
       <body>
-      <Nav />
+        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   )
