@@ -3,17 +3,19 @@ const contentful = require("contentful");
 const client = contentful.createClient({
     space: "nhrelrjfi7i2",
     accessToken: "T5tWHsOH_igUsfddR5PDejVS-SLwqmm2L8RoENr1PZ8",
-  });
-
-  client.getEntries().then(function (entries) {
+});
+let articles = [];
+client.getEntries().then(function (entries) {
     console.log(entries.items);
     // log the title for all the entries that have it
     entries.items.forEach(function (entry) {
-      if (entry.fields.pageTitle) {
-        console.log(entry.fields.pageTitle);
-      }
+        if (entry.fields.featuredImage) {
+            console.log(entry.fields.featuredImage);
+            articles.push(entry.fields);
+        }
+
     });
-  });
+});
 
 export default function Blog() {
     return (
@@ -110,125 +112,42 @@ export default function Blog() {
                                 </div>
                             </div>
                         </article>
-                        <article className="flex max-w-xl flex-col items-start justify-between">
-                            <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://visualstudiomagazine.com/-/media/ECG/redmondmag/Images/IntroImages2017/0917red_F1a_TeamBots.jpg" />
-                            <br />
-                            <div className="flex items-center gap-x-4 text-xs">
-                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">AI</a>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Programming</a>
-                            </div>
-                            <div className="group relative">
-                                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                    <a href="#">
-                                        <span className="absolute inset-0"></span>
-                                        The Future of Programming: Embracing AI Assistants
-                                    </a>
-                                </h3>
-                                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Step into the era of AI-powered programming assistants. Explore the benefits of using AI to assist programmers in tasks like code generation, debugging, and code completion, revolutionizing the way we write code.</p>
-                            </div>
-                            <div className="relative mt-8 flex items-center gap-x-4">
-                                <img src="/assets/JSmanLogo.png" alt="" className="h-10 w-10 rounded-full bg-gray-50 shadow-2xl" />
-                                <div className="text-sm leading-5">
-                                    <p className="font-semibold text-gray-900">
-                                        <a href="#">
-                                            <span className="absolute inset-0"></span>
-                                            JSman225
-                                        </a>
-                                    </p>
-                                    <p className="text-gray-600">Founder</p>
+
+                        {articles.map((article) => (
+                            <article className="flex max-w-xl flex-col items-start justify-between">
+                                <a href="/blog/deltasoft-ai-elevating-software-development-efficiency.html">
+                                    <img className="shadow-xl rounded-xl object-cover w-full h-52" src={article.featuredImage.fields.file.url} />
+                                </a>
+                                <br />
+                                <div className="flex items-center gap-x-4 text-xs">
+                                    <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
+                                    <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Deltasoft AI</a>
+                                    <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Developers</a>
                                 </div>
-                            </div>
-                        </article>
-                        <article className="flex max-w-xl flex-col items-start justify-between">
-                            <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://www.itprotoday.com/sites/itprotoday.com/files/styles/article_featured_retina/public/Padlock_Circuit_Board.jpg?itok=gp3I6l8I" />
-                            <br />
-                            <div className="flex items-center gap-x-4 text-xs">
-                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Developers</a>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Cybersecurity</a>
-                            </div>
-                            <div className="group relative">
-                                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                    <a href="#">
-                                        <span className="absolute inset-0"></span>
-                                        Cybersecurity for Developers: Best Practices and Tools
-                                    </a>
-                                </h3>
-                                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">A comprehensive guide to cybersecurity essentials for developers. Learn about secure coding practices, essential security tools, and how to integrate security measures into the software development lifecycle.</p>
-                            </div>
-                            <div className="relative mt-8 flex items-center gap-x-4">
-                                <img src="/assets/JSmanLogo.png" alt="" className="h-10 w-10 rounded-full bg-gray-50 shadow-2xl" />
-                                <div className="text-sm leading-5">
-                                    <p className="font-semibold text-gray-900">
-                                        <a href="#">
+                                <div className="group relative">
+                                    <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                        <a href="/blog/deltasoft-ai-elevating-software-development-efficiency.html">
                                             <span className="absolute inset-0"></span>
-                                            JSman225
+                                            {article.internalName}
                                         </a>
-                                    </p>
-                                    <p className="text-gray-600">Founder</p>
+                                    </h3>
+                                    <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Discover how Deltasoft AI streamlines the software development process. From automated code reviews to intelligent bug detection, see how this AI-powered tool enhances efficiency and productivity for programmers.</p>
                                 </div>
-                            </div>
-                        </article>
-                        <article className="flex max-w-xl flex-col items-start justify-between">
-                            <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://cdn.dribbble.com/users/2920041/screenshots/15469045/media/8ddd8485720aafff1fb1249f0ed388f3.png?resize=400x0" />
-                            <br />
-                            <div className="flex items-center gap-x-4 text-xs">
-                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Technology</a>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Developers</a>
-                            </div>
-                            <div className="group relative">
-                                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                    <a href="#">
-                                        <span className="absolute inset-0"></span>
-                                        Advancements in Cloud Computing: Empowering Developers
-                                    </a>
-                                </h3>
-                                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Stay ahead in the cloud era. Delve into the latest advancements in cloud computing, including serverless architecture, containerization, and cloud-native technologies, and learn how developers can leverage these innovations.</p>
-                            </div>
-                            <div className="relative mt-8 flex items-center gap-x-4">
-                                <img src="/assets/JSmanLogo.png" alt="" className="h-10 w-10 rounded-full bg-gray-50 shadow-2xl" />
-                                <div className="text-sm leading-5">
-                                    <p className="font-semibold text-gray-900">
-                                        <a href="#">
-                                            <span className="absolute inset-0"></span>
-                                            JSman225
-                                        </a>
-                                    </p>
-                                    <p className="text-gray-600">Founder</p>
+                                <div className="relative mt-8 flex items-center gap-x-4">
+                                    <img src="/assets/JSmanLogo.png" alt="" className="h-10 w-10 rounded-full bg-gray-50 shadow-2xl" />
+                                    <div className="text-sm leading-5">
+                                        <p className="font-semibold text-gray-900">
+                                            <a href="#">
+                                                <span className="absolute inset-0"></span>
+                                                JSman225
+                                            </a>
+                                        </p>
+                                        <p className="text-gray-600">Founder</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                        <article className="flex max-w-xl flex-col items-start justify-between">
-                            <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://www.builder.ai/images/low-code-development.png" />
-                            <br />
-                            <div className="flex items-center gap-x-4 text-xs">
-                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Software Development</a>
-                            </div>
-                            <div className="group relative">
-                                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                    <a href="#">
-                                        <span className="absolute inset-0"></span>
-                                        The Rise of Low-Code Development: A Developer's Perspective
-                                    </a>
-                                </h3>
-                                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Explore the low-code revolution and its impact on traditional software development. Learn how low-code platforms can accelerate development and empower developers to build applications with speed and efficiency.</p>
-                            </div>
-                            <div className="relative mt-8 flex items-center gap-x-4">
-                                <img src="/assets/JSmanLogo.png" alt="" className="h-10 w-10 rounded-full bg-gray-50 shadow-2xl" />
-                                <div className="text-sm leading-5">
-                                    <p className="font-semibold text-gray-900">
-                                        <a href="#">
-                                            <span className="absolute inset-0"></span>
-                                            JSman225
-                                        </a>
-                                    </p>
-                                    <p className="text-gray-600">Founder</p>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        ))}
+
                     </div>
                 </div>
             </div>
