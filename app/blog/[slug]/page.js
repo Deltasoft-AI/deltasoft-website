@@ -1,18 +1,18 @@
 const contentful = require("contentful");
 
 const client = contentful.createClient({
-    space: "3qjuz81t9uk8",
-    accessToken: "JOowNxogcKMQoF39hSL7nNHtIGZKwRTczLr2B2X6dwY",
+    space: "nhrelrjfi7i2",
+    accessToken: "T5tWHsOH_igUsfddR5PDejVS-SLwqmm2L8RoENr1PZ8",
   });
 
-  client.getEntries().then(function (entries) {
-    // log the title for all the entries that have it
-    entries.items.forEach(function (entry) {
-      if (entry.fields.productName) {
-        console.log(entry.fields.productName);
-      }
+  async function fetchArticles() {
+    const entries = await client.getEntries({
+      content_type: 'article',
     });
-  });
+  
+    return entries.items;
+  }
+  console.log(fetchArticles());
 
   export default function Blog() {
     return (

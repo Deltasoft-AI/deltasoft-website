@@ -1,3 +1,20 @@
+const contentful = require("contentful");
+
+const client = contentful.createClient({
+    space: "nhrelrjfi7i2",
+    accessToken: "T5tWHsOH_igUsfddR5PDejVS-SLwqmm2L8RoENr1PZ8",
+  });
+
+  client.getEntries().then(function (entries) {
+    console.log(entries.items);
+    // log the title for all the entries that have it
+    entries.items.forEach(function (entry) {
+      if (entry.fields.pageTitle) {
+        console.log(entry.fields.pageTitle);
+      }
+    });
+  });
+
 export default function Blog() {
     return (
         <section>
@@ -67,7 +84,7 @@ export default function Blog() {
                             </a>
                             <br />
                             <div className="flex items-center gap-x-4 text-xs">
-                                <time datetime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
+                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Deltasoft AI</a>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Developers</a>
                             </div>
@@ -97,7 +114,7 @@ export default function Blog() {
                             <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://visualstudiomagazine.com/-/media/ECG/redmondmag/Images/IntroImages2017/0917red_F1a_TeamBots.jpg" />
                             <br />
                             <div className="flex items-center gap-x-4 text-xs">
-                                <time datetime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
+                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">AI</a>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Programming</a>
                             </div>
@@ -127,7 +144,7 @@ export default function Blog() {
                             <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://www.itprotoday.com/sites/itprotoday.com/files/styles/article_featured_retina/public/Padlock_Circuit_Board.jpg?itok=gp3I6l8I" />
                             <br />
                             <div className="flex items-center gap-x-4 text-xs">
-                                <time datetime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
+                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Developers</a>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Cybersecurity</a>
                             </div>
@@ -157,7 +174,7 @@ export default function Blog() {
                             <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://cdn.dribbble.com/users/2920041/screenshots/15469045/media/8ddd8485720aafff1fb1249f0ed388f3.png?resize=400x0" />
                             <br />
                             <div className="flex items-center gap-x-4 text-xs">
-                                <time datetime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
+                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Technology</a>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Developers</a>
                             </div>
@@ -187,7 +204,7 @@ export default function Blog() {
                             <img className="shadow-xl rounded-xl object-cover w-full h-52" src="https://www.builder.ai/images/low-code-development.png" />
                             <br />
                             <div className="flex items-center gap-x-4 text-xs">
-                                <time datetime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
+                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
                                 <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Software Development</a>
                             </div>
                             <div className="group relative">
