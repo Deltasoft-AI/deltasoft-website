@@ -139,8 +139,7 @@ export default function Blog() {
                                     <time dateTime={article.publishedDate} className="text-gray-500">{formatDate(article.publishedDate)}</time>
                                     {article.deltasoftAiRelatedArticle && (
                                     <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Deltasoft AI</a>
-                                    )
-                                    }
+                                    )}
                                 </div>
                                 <div className="group relative">
                                     <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
