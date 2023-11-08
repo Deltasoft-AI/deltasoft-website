@@ -30,7 +30,7 @@ export default function BlogArticle({ params }) {
         // log the title for all the entries that have it
         entries.items.forEach(function (entry) {
             if (entry.fields.featuredImage) {
-                console.log(entry.fields.content.content);
+                console.log(entry.fields.content.content[1].data.target.fields.image.fields);
                 articles.push(entry.fields);
             }
 
@@ -73,88 +73,16 @@ export default function BlogArticle({ params }) {
                                                     return <p class="text-base leading-[1.75rem]" key={index}>{node.content[0].value}</p>;
                                                 case 'embedded-entry-block':
                                                     // Handle the embedded entry block. You might need to adjust this depending on the structure of your data.
-                                                    return null;//<div key={index}>Embedded Entry: {node.data.target.sys.id}</div>;
+                                                    //         
+                                                    return (
+                                                        <p key={index} class="text-base leading-[1.75rem]">
+                                                        <img class="my-8 rounded-2xl shadow-2xl" src={node.data.target.fields.image.fields.file.url} alt={node.data.target.fields.image.fields.title} />
+                                                        </p>
+                                                    );//<div key={index}>Embedded Entry: {node.data.target.sys.id}</div>;
                                                 default:
                                                     return null;
                                             }
                                         })}
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <p class="text-base leading-[1.75rem]">
-                                        </p>
-                                        <h2 id="1" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" id="title403">
-                                            1. AI-Powered Code Assistants
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            One of the most impactful advancements in software development in recent years has been the rise of AI-powered code assistants. These intelligent tools, equipped with machine learning capabilities, have gained immense popularity among developers. A prominent example of such a code assistant is Microsoft's IntelliCode, which is integrated into Visual Studio Code. IntelliCode uses AI to analyze code patterns from millions of repositories on GitHub, providing context-aware code suggestions and predicting the next line of code in real-time. Developers benefit from increased productivity, reduced code errors, and faster development cycles thanks to these AI-driven code assistants.
-                                        </p>
-                                        <p class="text-base leading-[1.75rem]">
-                                            <img class="my-8 rounded-2xl shadow-2xl" src="https://visualstudio.microsoft.com/wp-content/uploads/2023/01/intellicode-autocomplition.gif" alt="intellicode-autocomplition" />
-                                        </p>
-                                        <h2 id="2" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]">
-                                            2. Low-Code and No-Code Platforms
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            The low-code and no-code movement has been gaining significant momentum, transforming how applications are developed. These platforms provide developers with the tools to build functional applications with minimal coding effort, accelerating the development process significantly. One notable example is Mendix, a low-code platform that allows developers to visually create applications using a drag-and-drop interface. Developers can focus on creativity and user experience, while the platform handles the backend complexities, making software development more accessible to a wider audience.
-                                        </p>
-                                        <h2 id="3" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" id="title404">
-                                            3. Serverless Computing
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            In 2022, serverless computing is revolutionizing cloud development. Services like AWS Lambda and Azure Functions have enabled developers to deploy code without managing servers directly. This approach ensures optimal scalability and cost-effectiveness, as resources are allocated dynamically based on demand. A classic example of serverless computing in action is the serverless architecture of a social media platform. Instead of provisioning and managing servers to handle varying loads, serverless functions can be triggered to handle specific tasks, allowing for efficient resource utilization and seamless scaling.
-                                        </p>
-                                        <h2 id="4" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]">
-                                            4. Integrated Development Environments (IDEs)
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            Modern IDEs have evolved to become powerful and customizable hubs for developers. Visual Studio Code, developed by Microsoft, is a prime example of an IDE that has gained tremendous popularity among developers. It offers an extensive range of extensions, enabling developers to tailor their coding environment to their specific needs. With features like code autocompletion, version control integration, and seamless collaboration tools, IDEs have become essential tools in the developer's arsenal, facilitating efficient and enjoyable coding experiences.
-                                        </p>
-                                        <p class="text-base leading-[1.75rem]">
-                                            <img class="my-8 rounded-2xl shadow-2xl" src="https://code.visualstudio.com/assets/updates/1_37/icons.gif" alt="Visual studio gif" />
-                                        </p>
-                                        <h2 id="5" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" id="title405">
-                                            5. Collaboration and Project Management Tools
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            Effective communication and project management are crucial for successful development projects. Collaboration tools like Slack and Microsoft Teams have become integral to developer workflows, allowing team members to communicate seamlessly, share ideas, and seek timely feedback. Additionally, project management tools like Asana aid in organizing tasks, tracking progress, and ensuring that development projects stay on schedule. These tools foster a collaborative and efficient work environment, enabling teams to deliver high-quality software products.
-                                        </p>
-                                        <p class="text-base leading-[1.75rem]">
-                                            <img class="my-8 rounded-2xl shadow-2xl" src="https://capacity.com/wp-content/uploads/2020/06/slack-vs-teams-02-1536x970.png.webp" alt="shopify cross sell popup" />
-                                        </p>
-                                        <h2 id="6" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]">
-                                            6. Continuous Integration and Continuous Deployment (CI/CD)
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            In 2023, CI/CD practices have become a standard in modern software development. Continuous Integration (CI) and Continuous Deployment (CD) workflows are automated processes that enable developers to build, test, and deploy code changes systematically. Tools like Jenkins and GitLab CI/CD have streamlined these processes, leading to faster delivery and increased software quality. As a result, developers can focus more on writing code and less on managing the development pipeline, resulting in improved productivity and code reliability.
-                                        </p>
-                                        <h2 id="7" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" id="title406">
-                                            7. Containerization Technologies
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            Containerization technologies like Docker and Kubernetes have been transforming the way applications are deployed and managed. Docker allows developers to package applications and their dependencies into containers, ensuring consistency across different environments. Kubernetes, an open-source container orchestration platform, simplifies the deployment and scaling of containerized applications. These technologies have led to more efficient and scalable development and deployment processes, making it easier for developers to manage complex applications.
-                                        </p>
-                                        <p>
-                                            <img class="my-8 rounded-2xl shadow-2xl" src="https://www.cloudzero.com/hubfs/blog/docker-alternatives.jpg" alt="shopify promotional popup" />
-                                        </p>
-                                        <h2 id="Conclusion" class="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" id="title408">
-                                            Conclusion
-                                        </h2>
-                                        <p class="text-base leading-[1.75rem]">
-                                            As the software development landscape continues to evolve, developers in 2022 will witness remarkable technological advancements. From AI-powered code assistants to low-code platforms and serverless computing, these innovations empower developers to work more efficiently, foster creativity, and deliver cutting-edge solutions. Embracing these key technologies and trends will undoubtedly shape the future of software development and open doors to even greater possibilities. With the continuous evolution of tools and practices like <span class="font-semibold leading-6 text-indigo-600">Deltasoft AI</span>, developers will have access to even more powerful and accessible resources, further transforming the world of programming. As we move forward, developers must stay attuned to these trends, leveraging technology to its fullest potential and driving innovation across all industries. The future of software development is bright, and developers are at the forefront of this exciting journey.
-                                        </p>
                                 </div>
                                 <div class="mt-12 flex justify-center rounded-xl border border-gray-200 md:justify-start">
                                     <div class="my-6 flex flex-col items-center justify-center gap-x-5 text-center md:my-9 md:mx-12 md:flex-row md:items-start md:text-left"><img src="/assets/JSmanLogo.jpg" alt="Polina Slepac" class="h-16 w-16 rounded-full" loading="lazy" />
