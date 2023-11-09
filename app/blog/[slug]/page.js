@@ -37,7 +37,7 @@ export async function generateStaticParams() {
     
         });
     });
-   
+    console.log(posts);
     return posts.map((post) => ({
       slug: post.slug,
     }))
