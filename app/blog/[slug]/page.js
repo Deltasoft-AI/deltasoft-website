@@ -32,7 +32,7 @@ export async function generateStaticParams() {
         entries.items.forEach(function (entry) {
             if (entry.fields.featuredImage) {
                 console.log(entry.fields.slug);
-                articles.push(entry.fields);
+                posts.push(entry.fields);
             }
     
         });
