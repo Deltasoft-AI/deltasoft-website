@@ -31,8 +31,8 @@ export async function generateStaticParams() {
         // log the title for all the entries that have it
         entries.items.forEach(function (entry) {
             if (entry.fields.featuredImage) {
-                console.log(entry.fields);
-                articles.push(entry.fields.slug);
+                console.log(entry.fields.slug);
+                articles.push(entry.fields);
             }
     
         });
