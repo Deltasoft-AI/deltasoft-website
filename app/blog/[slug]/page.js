@@ -1,3 +1,4 @@
+export const dynamicParams = true
 const contentful = require("contentful");
 
 const client = contentful.createClient({
