@@ -5,7 +5,6 @@ const client = contentful.createClient({
     accessToken: "T5tWHsOH_igUsfddR5PDejVS-SLwqmm2L8RoENr1PZ8",
 });
 let articles = [];
-
 function formatDate(inputDate) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -85,11 +84,11 @@ export default function BlogArticle({ params }) {
                                         })}
                                 </div>
                                 <div class="mt-12 flex justify-center rounded-xl border border-gray-200 md:justify-start">
-                                    <div class="my-6 flex flex-col items-center justify-center gap-x-5 text-center md:my-9 md:mx-12 md:flex-row md:items-start md:text-left"><img src="/assets/JSmanLogo.jpg" alt="Polina Slepac" class="h-16 w-16 rounded-full" loading="lazy" />
+                                    <div class="my-6 flex flex-col items-center justify-center gap-x-5 text-center md:my-9 md:mx-12 md:flex-row md:items-start md:text-left"><img src={article.author.fields.avatar.fields.file.url} alt="" class="h-16 w-16 rounded-full" loading="lazy" />
                                         <div class="flex flex-col">
-                                            <p class="mt-3 mb-1 font-biennale text-lg font-bold leading-6 md:mt-0 md:mb-0">JSman225</p>
-                                            <p class="mb-6 w-[200px] font-biennale text-tiny leading-8 text-gray-700 md:mb-0 md:w-full">Founder of <span class="font-semibold leading-6 text-indigo-600">Deltasoft</span></p>
-                                            <p class="font-biennale text-xs text-gray-500 md:text-tiny"><span class="font-biennale text-xs text-gray-500 md:text-tiny">July 20, 2023</span><span class="ml-5 font-biennale text-xs text-gray-500 md:text-tiny">6:00 PM</span></p>
+                                            <p class="mt-3 mb-1 font-biennale text-lg font-bold leading-6 md:mt-0 md:mb-0">{article.author.fields.name}</p>
+                                            <p class="mb-6 w-[200px] font-biennale text-tiny leading-8 text-gray-700 md:mb-0 md:w-full">{article.author.fields.occupation}</p>
+                                            <p class="font-biennale text-xs text-gray-500 md:text-tiny"><span class="font-biennale text-xs text-gray-500 md:text-tiny">{formatDate(article.publishedDate)}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -103,63 +102,63 @@ export default function BlogArticle({ params }) {
                                     <ul class="mt-6 list-none">
                                         <li>
                                             <a href="#Introduction" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>Introduction</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#1" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>1. AI-Powered Code Assistants</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#2" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>2. Low-Code and No-Code Platforms</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#3" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>3. Serverless Computing</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#4" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>4. Integrated Development Environments (IDEs)</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#5" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>5. Collaboration and Project Management Tools</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#6" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>6. Continuous Integration and Continuous Deployment (CI/CD)</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#7" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>7. Containerization Technologies</a>
                                         </li>
                                         <li class="flex flex-col">
                                             <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
                                             <a href="#Conclusion" class="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                <div class="my-auto flex flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                <div class="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                     <div class="h-1 w-1 rounded-lg bg-blue-600"></div>
                                                 </div>Conclusion</a>
                                         </li>

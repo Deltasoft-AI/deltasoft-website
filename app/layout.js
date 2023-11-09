@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <meta content='https://deltasoft-ai.netlify.app/apple-touch-icon.png' property='og:image' />
         <meta name="keywords"
           content="Deltasoft AI, Deltasoft Ai, Deltasoft, AI, Ai, Deltasoft-AI, Deltasoft-Ai, deltasoft, deltasoft ai, deltasoft-ai, ai" />
-        <script src="https://kit.fontawesome.com/f9d40dbe97.js" crossOrigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/f9d40dbe97.js" crossOrigin="anonymous" async />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
