@@ -23,7 +23,31 @@ function formatDate(inputDate) {
     return formattedDate;
 }
 
+
+export async function generateStaticParams() {
+    let posts = [];
+    client.getEntries().then(function (entries) {
+        //console.log(entries.items);
+        // log the title for all the entries that have it
+        entries.items.forEach(function (entry) {
+            if (entry.fields.featuredImage) {
+                console.log(entry.fields);
+                articles.push(entry.fields.slug);
+            }
+    
+        });
+    });
+   
+    return posts.map((post) => ({
+      slug: post.slug,
+    }))
+  }
+
+
+
+
 export default function BlogArticle({ params }) {
+    const { slug } = params;
     client.getEntries({ content_type: 'pageBlogPost', 'fields.slug[in]': params.slug }).then(function (entries) {
         //console.log(entries.items);
         // log the title for all the entries that have it
