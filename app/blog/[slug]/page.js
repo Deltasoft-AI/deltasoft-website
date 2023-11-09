@@ -47,7 +47,6 @@ export async function generateStaticParams() {
 
 
 export default function BlogArticle({ params }) {
-    const { slug } = params;
     client.getEntries({ content_type: 'pageBlogPost', 'fields.slug[in]': params.slug }).then(function (entries) {
         //console.log(entries.items);
         // log the title for all the entries that have it
