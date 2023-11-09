@@ -26,7 +26,7 @@ function formatDate(inputDate) {
 
 export async function generateStaticParams() {
     let posts = [];
-    client.getEntries().then(function (entries) {
+    await client.getEntries().then(function (entries) {
         //console.log(entries.items);
         // log the title for all the entries that have it
         entries.items.forEach(function (entry) {
