@@ -24,7 +24,25 @@ function formatDate(inputDate) {
 }
 
 export async function generateStaticParams(blogPosts) {
-    let posts = [];
+    let posts = [
+        {
+          categorySlug: "food",
+          productId: "1",
+        },
+        {
+          categorySlug: "food",
+          productId: "2",
+        },
+        {
+          categorySlug: "materials",
+          productId: "1",
+        },
+        {
+          categorySlug: "materials",
+          productId: "2",
+        },
+      ];
+      /*
     await client.getEntries().then(function (entries) {
         //console.log(entries.items);
         // log the title for all the entries that have it
@@ -35,12 +53,12 @@ export async function generateStaticParams(blogPosts) {
             }
     
         });
-    });
+    });*/
     //console.log(posts);
-    return posts.map((post) => ({
-      article: post,
+    return posts;/*.map((post) => ({
+      //article: post,
       slug: post.slug,
-    }))
+    }))*/
   }
 
 
