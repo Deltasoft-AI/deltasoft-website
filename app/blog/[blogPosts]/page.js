@@ -1,4 +1,3 @@
-export const dynamicParams = true
 const contentful = require("contentful");
 
 const client = contentful.createClient({
@@ -24,30 +23,31 @@ function formatDate(inputDate) {
     return formattedDate;
 }
 
-
-export async function generateStaticParams() {
+export async function generateStaticParams(blogPosts) {
     let posts = [];
     await client.getEntries().then(function (entries) {
         //console.log(entries.items);
         // log the title for all the entries that have it
         entries.items.forEach(function (entry) {
             if (entry.fields.featuredImage) {
-                console.log(entry.fields.slug);
+                //console.log(entry.fields.slug);
                 posts.push(entry.fields);
             }
     
         });
     });
-    console.log(posts);
+    //console.log(posts);
     return posts.map((post) => ({
+      article: post,
       slug: post.slug,
     }))
   }
 
 
-
-
 export default function BlogArticle({ params }) {
+    const { slug, article } = params
+    console.log('the article:',article);
+    /*
     client.getEntries({ content_type: 'pageBlogPost', 'fields.slug[in]': params.slug }).then(function (entries) {
         //console.log(entries.items);
         // log the title for all the entries that have it
@@ -59,9 +59,9 @@ export default function BlogArticle({ params }) {
 
         });
     });
+    */
     return (
         <>
-            {articles.map((article) => (
                 <article key={article.seoFields.sys.id}>
 
                     <div class="m-auto w-full max-w-[1350px] px-8">
@@ -194,8 +194,6 @@ export default function BlogArticle({ params }) {
                 </div>
 
                 </article >
-            ))
-}
         </>
     )
 }
