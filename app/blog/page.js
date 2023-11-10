@@ -4,37 +4,37 @@ const client = contentful.createClient({
     space: "nhrelrjfi7i2",
     accessToken: "T5tWHsOH_igUsfddR5PDejVS-SLwqmm2L8RoENr1PZ8",
 });
-let articles = [];
-client.getEntries().then(function (entries) {
-    //console.log(entries.items);
-    // log the title for all the entries that have it
-    entries.items.forEach(function (entry) {
-        if (entry.fields.featuredImage) {
-            console.log(entry.fields);
-            articles.push(entry.fields);
-        }
-
-    });
-});
 function formatDate(inputDate) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
+
     // Step 1: Parse the input date
     const parts = inputDate.split('-');
     const year = parts[0];
     const month = parseInt(parts[1], 10);
     const day = parseInt(parts[2], 10);
-  
+
     // Create a new Date object
     const date = new Date(year, month - 1, day);
-  
+
     // Step 2: Format the Date object
     const formattedDate = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-  
+
     return formattedDate;
-  }
-  
-export default function Blog() {
+}
+
+export default async function Blog() {
+    let articles = [];
+    await client.getEntries().then(function (entries) {
+        //console.log(entries.items);
+        // log the title for all the entries that have it
+        entries.items.forEach(function (entry) {
+            if (entry.fields.featuredImage) {
+                //console.log(entry.fields);
+                articles.push(entry.fields);
+            }
+
+        });
+    });
     return (
         <section>
             <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -97,53 +97,23 @@ export default function Blog() {
             <div className="bg-white pb-24">
                 <div className="mx-auto max-w-5xl px-6 lg:px-0">
                     <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                        <article className="flex max-w-xl flex-col items-start justify-between">
-                            <a href="/blog/deltasoft-ai-elevating-software-development-efficiency.html">
-                                <img alt="" className="shadow-xl rounded-xl object-cover w-96 h-52" src="https://i.ibb.co/2NT6JHd/image-12.png" />
-                            </a>
-                            <br />
-                            <div className="flex items-center gap-x-4 text-xs">
-                                <time dateTime="2020-03-16" className="text-gray-500">Mar 16, 2020</time>
-                                <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Deltasoft AI</a>
-                            </div>
-                            <div className="group relative">
-                                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                    <a href="/blog/deltasoft-ai-elevating-software-development-efficiency.html">
-                                        <span className="absolute inset-0"></span>
-                                        Deltasoft AI: Elevating Software Development Efficiency
-                                    </a>
-                                </h3>
-                                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Discover how Deltasoft AI streamlines the software development process. From automated code reviews to intelligent bug detection, see how this AI-powered tool enhances efficiency and productivity for programmers.</p>
-                            </div>
-                            <div className="relative mt-8 flex items-center gap-x-4">
-                                <img src="/assets/JSmanLogo.png" alt="" className="h-10 w-10 rounded-full bg-gray-50 shadow-2xl" />
-                                <div className="text-sm leading-5">
-                                    <p className="font-semibold text-gray-900">
-                                        <a href="#">
-                                            <span className="absolute inset-0"></span>
-                                            JSman225
-                                        </a>
-                                    </p>
-                                    <p className="text-gray-600">Founder</p>
-                                </div>
-                            </div>
-                        </article>
+
 
                         {articles.map((article) => (
                             <article key={article.seoFields.sys.id} className="flex max-w-xl flex-col items-start justify-between">
-                                <a href={'blog/'+article.slug}>
+                                <a href={'/blog/' + article.slug}>
                                     <img alt="" className="shadow-xl rounded-xl object-cover w-96 h-52" src={article.featuredImage.fields.file.url} />
                                 </a>
                                 <br />
                                 <div className="flex items-center gap-x-4 text-xs">
                                     <time dateTime={article.publishedDate} className="text-gray-500">{formatDate(article.publishedDate)}</time>
                                     {article.deltasoftAiRelatedArticle && (
-                                    <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Deltasoft AI</a>
+                                        <a href="#" className="relative z-10 rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100">Deltasoft AI</a>
                                     )}
                                 </div>
                                 <div className="group relative">
                                     <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                        <a href={'blog/'+article.slug}>
+                                        <a href={'/blog/' + article.slug}>
                                             <span className="absolute inset-0"></span>
                                             {article.title}
                                         </a>
