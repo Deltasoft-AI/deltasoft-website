@@ -23,14 +23,44 @@ function formatDate(inputDate) {
 }
 
 export default async function Blog() {
+    let featuredArticle;
+    let featuredArticleId;
+    await client.getEntries({ content_type: 'pageLanding'}).then(function (entry) {
+        featuredArticleId = entry.items[0].fields.featuredBlogPost.fields.seoFields.sys.id;
+        //console.log(entry.items[0].fields.featuredBlogPost.fields.seoFields.sys.id);
+        featuredArticle = {
+            title: entry.items[0].fields.featuredBlogPost.fields.title,
+            subtitle: entry.items[0].fields.featuredBlogPost.fields.shortDescription,
+            slug: entry.items[0].fields.featuredBlogPost.fields.slug,
+            publishedDate: entry.items[0].fields.featuredBlogPost.fields.publishedDate,
+            featuredImage: entry.items[0].fields.featuredBlogPost.fields.featuredImage.fields,
+            tags: entry.items[0].fields.tags,
+            author: entry.items[0].fields.featuredBlogPost.fields.author.sys.id
+        };
+        
+    });
+    let featuredAuthorId = featuredArticle.author;
+    let featuredAuthor;
+    await client.getEntry(featuredAuthorId).then(function (entry) {
+        featuredAuthor = {
+            name: entry.fields.name,
+            occupation: entry.fields.occupation,
+            avatar: entry.fields.avatar.fields
+        }
+        //console.log(entry.fields.avatar.fields);
+    });
     let articles = [];
     await client.getEntries().then(function (entries) {
         //console.log(entries.items);
         // log the title for all the entries that have it
         entries.items.forEach(function (entry) {
             if (entry.fields.featuredImage) {
-                //console.log(entry.fields);
-                articles.push(entry.fields);
+                //console.log(entry.fields.seoFields.sys.id);
+                if (entry.fields.seoFields.sys.id != featuredArticleId){
+                    //console.log('featuredArticleId:',featuredArticleId);
+                    //console.log('articleId:',entry.fields.seoFields.sys.id);
+                    articles.push(entry.fields);
+                }
             }
 
         });
@@ -50,46 +80,42 @@ export default async function Blog() {
                 </div>
             </div>
 
-            <div className="relative isolate px-6 pt-4 lg:px-8">
+            <article className="relative isolate px-6 pt-4 lg:px-8">
                 <div className="flex flex-wrap gap-8 mx-auto max-w-2xl lg:flex-row flex-col lg:max-w-5xl py-8 sm:py-8 lg:py-8">
-                    <a href="/blog/empowering-developers-in-2023-key-technologies-and-trends.html" className="flex-1">
-                        <img alt="" className="rounded-xl shadow-2xl object-cover w-full h-52 sm:h-80" src="https://images.unsplash.com/photo-1525824617522-ca036119a052?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" />
+                    <a href={'/blog/' + featuredArticle.slug} className="flex-1">
+                        <img alt={featuredArticle.featuredImage.title} className="rounded-xl shadow-2xl object-cover w-full h-52 sm:h-80" src={featuredArticle.featuredImage.file.url} />
                     </a>
                     <div className="flex-1 flex justify-center flex-col">
                         <div className="flex justify-center flex-col gap-2">
                             <header>
                                 <div className="mb-3">
                                     <ul className="flex flex-wrap text-xs font-medium -m-1">
-
-                                        <li className="m-1">
-                                            <a className="rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100" href="">Technology</a>
+                                    {featuredArticle.tags.map((tag, index) => (
+                                        <li key={index} className="m-1">
+                                            <a className="rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100" href="">{tag}</a>
                                         </li>
-
-                                        <li className="m-1">
-                                            <a className="rounded-full bg-blue-600 hover:bg-blue-700 px-3 py-1.5 font-medium text-gray-100" href="">Developers</a>
-                                        </li>
-
+                                    ))}
                                     </ul>
                                 </div>
                                 <h3 className="h3 text-2xl lg:text-3xl mb-2">
-                                    <a href="/blog/empowering-developers-in-2023-key-technologies-and-trends.html" className="hover:text-gray-600 text-gray-900 transition duration-150 ease-in-out">Empowering Developers in 2023: Key Technologies and Trends</a>
+                                    <a href={'/blog/' + featuredArticle.slug} className="hover:text-gray-600 text-gray-900 transition duration-150 ease-in-out">{featuredArticle.title}</a>
                                 </h3>
                             </header>
-                            <p className="text-md text-gray-800">From AI-powered code assistants to low-code platforms and serverless computing, this article unveils the empowering innovations that will redefine how developers create cutting-edge solutions and streamline their workflows.</p>
+                            <p className="text-md text-gray-800">{featuredArticle.subtitle}</p>
                             <footer className="flex items-center mt-4">
                                 <a>
-                                    <img className="rounded-full flex-shrink-0 mr-4 shadow-2xl" src="/assets/JSmanLogo.png" width="50" height="50" alt="Harm Aarts" />
+                                    <img className="rounded-full flex-shrink-0 mr-4 shadow-2xl" src={featuredAuthor.avatar.file.url} width="50" height="50" alt={featuredAuthor.avatar.title} />
                                 </a>
                                 <div className="text-md">
-                                    <a className="font-medium text-gray-900">JSman225</a>
+                                    <a className="font-medium text-gray-900">{featuredAuthor.name}</a>
                                     <span className="text-gray-700"> - </span>
-                                    <span className="text-gray-500">July 20, 2023</span>
+                                    <span className="text-gray-500">{formatDate(featuredArticle.publishedDate)}</span>
                                 </div>
                             </footer>
                         </div>
                     </div>
                 </div>
-            </div>
+            </article>
 
 
 

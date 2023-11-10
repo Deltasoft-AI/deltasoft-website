@@ -21,7 +21,6 @@ function formatDate(inputDate) {
 
     return formattedDate;
 };
-
 export default async function Page({ params }) {
     let articles = [];
     await client.getEntries({ content_type: 'pageBlogPost', 'fields.slug[in]': params.slug }).then(function (entries) {
@@ -201,7 +200,7 @@ export default async function Page({ params }) {
                                     <br />
                                     <a href="https://discord.gg/AxUTv9Actu"
                                         className="rounded-md bg-blue-700 px-10 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
-                                            See more <span aria-hidden="true">→</span></a>
+                                        See more <span aria-hidden="true">→</span></a>
                                 </div>
                                 {article.relatedBlogPosts.map((article) => (
                                     <article key={article.fields.seoFields.sys.id} className="flex max-w-xl flex-col items-start justify-between">
