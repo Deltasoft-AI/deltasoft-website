@@ -88,12 +88,7 @@ export default async function Page({ params }) {
 
                                                             return result;
                                                         }
-
-
-                                                        // Assuming your JSON response is stored in a variable called jsonData
                                                         const list = node.content.map((node) => extractBulletPoints(node));
-                                                        //console.log(JSON.stringify(node.content));
-                                                        //console.log(JSON.stringify(list));
                                                         return (
                                                             <ul key={index} className="list-disc pl-8">
                                                                 {list.map((node, index) => (
@@ -127,12 +122,7 @@ export default async function Page({ params }) {
                                                             return result;
                                                         }
 
-                                                        // Assuming your JSON response is stored in a variable called jsonData
                                                         const numberedList = node.content.map((node) => extractNumberedBulletPoints(node));
-
-                                                        //console.log(numberedList);
-
-                                                        // Your React component
                                                         return (
                                                             <ol className="list-decimal pl-8">
                                                                 {numberedList.map((node, index) => (
@@ -150,13 +140,11 @@ export default async function Page({ params }) {
                                                             </ol>
                                                         );
                                                     case 'embedded-entry-block':
-                                                        // Handle the embedded entry block. You might need to adjust this depending on the structure of your data.
-                                                        //         
                                                         return (
                                                             <p key={index} className="text-base leading-[1.75rem]">
                                                                 <img className="my-8 rounded-2xl shadow-2xl" src={node.data.target.fields.image.fields.file.url} alt={node.data.target.fields.image.fields.title} />
                                                             </p>
-                                                        );//<div key={index}>Embedded Entry: {node.data.target.sys.id}</div>;
+                                                        );
                                                     default:
                                                         return null;
                                                 }
