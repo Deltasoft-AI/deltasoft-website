@@ -42,7 +42,7 @@ export default async function Page({ params }) {
                         <div className="m-auto w-full max-w-[1350px] px-8">
                             <div className="mb-12 mt-12 flex flex-col items-center justify-center gap-x-4 md:mb-24 xl:flex-row xl:items-start">
                                 <div className="relative w-full xl:w-2/3">
-                                    <div className="relative mx-auto overflow-hidden rounded-lg md:w-2/3 xl:w-full md:h-2/3 lg:h-[482px] shadow-2xl"><img src={article.featuredImage.fields.file.url} alt="shopify online shopping popups" className="w-full" />
+                                    <div className="relative mx-auto overflow-hidden rounded-lg md:w-2/3 xl:w-full md:h-2/3 lg:h-[482px] shadow-2xl"><img src={article.featuredImage.fields.file.url} alt="shopify online shopping popups" className="w-full h-full object-cover" />
                                         <div className="absolute bottom-5 left-5 flex gap-x-2 rounded-2xl bg-white px-3 py-1 font-biennale text-4xs leading-snug text-navy-900 sm:gap-x-4 sm:text-3xs md:gap-x-5 md:px-6 md:py-3 md:text-mini xl:bottom-16 xl:left-16">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4 self-center sm:h-5 sm:w-5">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -68,7 +68,7 @@ export default async function Page({ params }) {
                                                     case 'heading-1':
                                                         return <h1 className="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" key={index}>{node.content[0].value}</h1>;
                                                     case 'paragraph':
-                                                        console.log(node.content[0].value);
+                                                        //console.log(node.content[0].value);
                                                         return <p className="text-base leading-[1.75rem]" key={index}>{node.content[0].value}</p>;
                                                     case 'unordered-list':
                                                         // Your extractBulletPoints function
