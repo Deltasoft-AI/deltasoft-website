@@ -68,23 +68,87 @@ export default async function Page({ params }) {
                                                     case 'heading-1':
                                                         return <h1 className="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" key={index}>{node.content[0].value}</h1>;
                                                     case 'paragraph':
+                                                        console.log(node.content[0].value);
                                                         return <p className="text-base leading-[1.75rem]" key={index}>{node.content[0].value}</p>;
                                                     case 'unordered-list':
-                                                        let list = [];
-                                                        node.content.map((node, index) => {
-                                                            //console.log(node.content[0].content[0].value);
-                                                            //console.log(node.content[1].content[0].content[0].content[0].value);
-                                                            list.push({ title: node.content[0].content[0].value, body: node.content[1].content[0].content[0].content[0].value })
+                                                        // Your extractBulletPoints function
+                                                        function extractBulletPoints(node) {
+                                                            let result = [];
 
-                                                        })
-                                                        //console.log(list)
+                                                            if (node.nodeType === 'list-item') {
+                                                                const listItemContent = node.content[0].content[0].value;
+
+                                                                if (node.content[1] && node.content[1].nodeType === 'unordered-list') {
+                                                                    const subContent = node.content[1].content.map((subItem) => extractBulletPoints(subItem));
+                                                                    result.push({ content: listItemContent, subContent });
+                                                                } else {
+                                                                    result.push({ content: listItemContent, subContent: [] });
+                                                                }
+                                                            }
+
+                                                            return result;
+                                                        }
+
+
+                                                        // Assuming your JSON response is stored in a variable called jsonData
+                                                        const list = node.content.map((node) => extractBulletPoints(node));
+                                                        //console.log(JSON.stringify(node.content));
+                                                        //console.log(JSON.stringify(list));
                                                         return (
                                                             <ul key={index} className="list-disc pl-8">
                                                                 {list.map((node, index) => (
-                                                                    <li key={index} className="pt-4"><b>{node.title}</b><br /><li style={{ listStyleType: 'circle', marginLeft: '32px' }}>{node.body}</li></li>
+                                                                    <li key={index} className="pt-4"><b>{node[0].content}</b><br />
+                                                                        {node[0].subContent.map((node, index) => (
+                                                                            <li key={index} style={{ listStyleType: 'circle', marginLeft: '32px' }}>
+                                                                                {node[0].content}
+                                                                            </li>
+                                                                        ))
+                                                                        }
+                                                                    </li>
                                                                 ))}
                                                             </ul>
                                                         )
+                                                    case 'ordered-list':
+                                                        // Your extractNumberedBulletPoints function
+                                                        function extractNumberedBulletPoints(node) {
+                                                            let result = [];
+
+                                                            if (node.nodeType === 'list-item') {
+                                                                const listItemContent = node.content[0].content[0].value;
+
+                                                                if (node.content[1] && node.content[1].nodeType === 'ordered-list') {
+                                                                    const subContent = node.content[1].content.map((subItem) => extractNumberedBulletPoints(subItem));
+                                                                    result.push({ content: listItemContent, subContent });
+                                                                } else {
+                                                                    result.push({ content: listItemContent, subContent: [] });
+                                                                }
+                                                            }
+
+                                                            return result;
+                                                        }
+
+                                                        // Assuming your JSON response is stored in a variable called jsonData
+                                                        const numberedList = node.content.map((node) => extractNumberedBulletPoints(node));
+
+                                                        //console.log(numberedList);
+
+                                                        // Your React component
+                                                        return (
+                                                            <ol className="list-decimal pl-8">
+                                                                {numberedList.map((node, index) => (
+                                                                    <li key={index} className="pt-4">
+                                                                        <b>{node[0].content}</b>
+                                                                        <ul className="list-letter pl-8">
+                                                                            {node[0].subContent.map((subNode, subIndex) => (
+                                                                                <li key={subIndex}>
+                                                                                    {subNode[0].content}
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </li>
+                                                                ))}
+                                                            </ol>
+                                                        );
                                                     case 'embedded-entry-block':
                                                         // Handle the embedded entry block. You might need to adjust this depending on the structure of your data.
                                                         //         
