@@ -64,7 +64,6 @@ export default async function Page({ params }) {
                                                 {article.title}
                                             </h1>
                                             {article.content.content.map((node, index) => {
-                                                //console.log(node.nodeType);
                                                 switch (node.nodeType) {
                                                     case 'heading-1':
                                                         //console.log(node.content);
