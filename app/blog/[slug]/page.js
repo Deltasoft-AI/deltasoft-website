@@ -97,7 +97,6 @@ export default async function Page({ params }) {
                                                             </h1>
                                                         );
                                                     case 'blockquote':
-                                                        //console.log(node.content[0].content);
                                                         return (
                                                             <blockquote className="mt-8 w-4/5 mx-auto py-8 text-lg text-center font-semibold rounded-xl border border-gray-200" key={index}>
                                                                 {node.content[0].content.map((contentNode, contentIndex) => {
