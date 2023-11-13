@@ -204,7 +204,6 @@ export default async function Page({ params }) {
                                                             </ul>
                                                         )
                                                     case 'ordered-list':
-                                                        // Your extractNumberedBulletPoints function
                                                         function extractNumberedBulletPoints(node) {
                                                             let result = [];
 
