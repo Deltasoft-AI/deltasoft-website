@@ -64,12 +64,102 @@ export default async function Page({ params }) {
                                                 {article.title}
                                             </h1>
                                             {article.content.content.map((node, index) => {
+                                                //console.log(node.nodeType);
                                                 switch (node.nodeType) {
                                                     case 'heading-1':
-                                                        return <h1 className="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" key={index}>{node.content[0].value}</h1>;
+                                                        //console.log(node.content);
+                                                        return (
+                                                            <h1 className="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" key={index}>
+                                                                {node.content.map((contentNode, contentIndex) => {
+                                                                    if (contentNode.value == '') {
+                                                                        return <br key={contentIndex} />
+                                                                    } else {
+                                                                        switch (contentNode.nodeType) {
+                                                                            case 'text':
+                                                                                return contentNode.marks.reduce((acc, mark) => {
+                                                                                    switch (mark.type) {
+                                                                                        case 'bold':
+                                                                                            return <strong>{acc}</strong>;
+                                                                                        case 'italic':
+                                                                                            return <em>{acc}</em>;
+                                                                                        case 'code':
+                                                                                            return <code>{acc}</code>;
+                                                                                        default:
+                                                                                            return acc;
+                                                                                    }
+                                                                                }, contentNode.value);
+                                                                            case 'hyperlink':
+                                                                                return <a className="font-semibold text-indigo-600" href={contentNode.data.uri}>{contentNode.content[0].value}</a>;
+                                                                            default:
+                                                                                return null;
+                                                                        }
+                                                                    }
+                                                                })}
+                                                            </h1>
+                                                        );
+                                                    case 'blockquote':
+                                                        //console.log(node.content[0].content);
+                                                        return (
+                                                            <blockquote className="mt-8 w-4/5 mx-auto py-8 text-lg text-center font-semibold rounded-xl border border-gray-200" key={index}>
+                                                                {node.content[0].content.map((contentNode, contentIndex) => {
+                                                                    if (contentNode.value == '') {
+                                                                        return <br key={contentIndex} />
+                                                                    } else {
+                                                                        switch (contentNode.nodeType) {
+                                                                            case 'text':
+                                                                                return contentNode.marks.reduce((acc, mark) => {
+                                                                                    switch (mark.type) {
+                                                                                        case 'bold':
+                                                                                            return <strong>{acc}</strong>;
+                                                                                        case 'italic':
+                                                                                            return <em>{acc}</em>;
+                                                                                        case 'code':
+                                                                                            return <code>{acc}</code>;
+                                                                                        default:
+                                                                                            return acc;
+                                                                                    }
+                                                                                }, contentNode.value);
+                                                                            case 'hyperlink':
+                                                                                return <a className="font-semibold leading-6 text-indigo-600" href={contentNode.data.uri}>{contentNode.content[0].value}</a>;
+                                                                            default:
+                                                                                return null;
+                                                                        }
+                                                                    }
+                                                                })}
+                                                            </blockquote>
+                                                        );
                                                     case 'paragraph':
-                                                        //console.log(node.content[0].value);
-                                                        return <p className="text-base leading-[1.75rem]" key={index}>{node.content[0].value}</p>;
+                                                        //console.log(node.content);
+                                                        return (
+                                                            <p className="text-base leading-[1.75rem]" key={index}>
+                                                                {node.content.map((contentNode, contentIndex) => {
+                                                                    if (contentNode.value == '') {
+                                                                        return <br key={contentIndex} />
+                                                                    } else {
+                                                                        switch (contentNode.nodeType) {
+                                                                            case 'text':
+                                                                                return contentNode.marks.reduce((acc, mark) => {
+                                                                                    switch (mark.type) {
+                                                                                        case 'bold':
+                                                                                            return <strong>{acc}</strong>;
+                                                                                        case 'italic':
+                                                                                            return <em>{acc}</em>;
+                                                                                        case 'code':
+                                                                                            return <code>{acc}</code>;
+                                                                                        default:
+                                                                                            return acc;
+                                                                                    }
+                                                                                }, contentNode.value);
+                                                                            case 'hyperlink':
+                                                                                return <a className="font-semibold leading-6 text-indigo-600" href={contentNode.data.uri}>{contentNode.content[0].value}</a>;
+                                                                            default:
+                                                                                return null;
+                                                                        }
+                                                                    }
+
+                                                                })}
+                                                            </p>
+                                                        );
                                                     case 'unordered-list':
                                                         // Your extractBulletPoints function
                                                         function extractBulletPoints(node) {
@@ -171,63 +261,7 @@ export default async function Page({ params }) {
                                                     <a href="#Introduction" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
                                                         <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                             <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>Introduction</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#1" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>1. AI-Powered Code Assistants</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#2" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>2. Low-Code and No-Code Platforms</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#3" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>3. Serverless Computing</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#4" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>4. Integrated Development Environments (IDEs)</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#5" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>5. Collaboration and Project Management Tools</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#6" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>6. Continuous Integration and Continuous Deployment (CI/CD)</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#7" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>7. Containerization Technologies</a>
-                                                </li>
-                                                <li className="flex flex-col">
-                                                    <div className="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
-                                                    <a href="#Conclusion" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
-                                                        <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
-                                                            <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>Conclusion</a>
+                                                        </div>Feature not yet available</a>
                                                 </li>
                                             </ul>
                                         </div>
