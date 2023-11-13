@@ -34,6 +34,10 @@ export default async function Page({ params }) {
 
         });
     });
+    let content = {
+        title: '',
+        content: []
+    }
     return (
         <>
             {articles.map((article) => (
@@ -41,7 +45,7 @@ export default async function Page({ params }) {
                     <article>
                         <div className="m-auto w-full max-w-[1350px] px-8">
                             <div className="mb-12 mt-12 flex flex-col items-center justify-center gap-x-4 md:mb-24 xl:flex-row xl:items-start">
-                                <div className="relative w-full xl:w-2/3">
+                                <div className="relative h-full w-full xl:w-2/3">
                                     <div className="relative mx-auto overflow-hidden rounded-lg md:w-2/3 xl:w-full md:h-2/3 lg:h-[482px] shadow-2xl"><img src={article.featuredImage.fields.file.url} alt="shopify online shopping popups" className="w-full h-full object-cover" />
                                         <div className="absolute bottom-5 left-5 flex gap-x-2 rounded-2xl bg-white px-3 py-1 font-biennale text-4xs leading-snug text-navy-900 sm:gap-x-4 sm:text-3xs md:gap-x-5 md:px-6 md:py-3 md:text-mini xl:bottom-16 xl:left-16">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4 self-center sm:h-5 sm:w-5">
@@ -60,16 +64,24 @@ export default async function Page({ params }) {
                                                     </a>
                                                 )}
                                             </div>
-                                            <h1 id="Introduction" className="text-[2.75rem] leading-[3.575rem] mb-[2rem] mt-[1.25rem]">
-                                                {article.title}
+                                            <h1 id="title" className="text-[2.75rem] leading-[3.575rem] mb-[2rem] mt-[1.25rem]">
+                                                {
+                                                    function title(){
+                                                        content.title = article.title;
+                                                        return article.title
+                                                    }()
+                                                }
                                             </h1>
                                             {article.content.content.map((node, index) => {
                                                 switch (node.nodeType) {
                                                     case 'heading-1':
-                                                        //console.log(node.content);
+                                                        //console.log(node.content[0].value);
+                                                        //content.content.push(node.)
                                                         return (
-                                                            <h1 className="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" key={index}>
+                                                            <h1 id={index} className="text-[2rem] leading-[2.5rem] mb-[1rem] mt-[2rem]" key={index}>
                                                                 {node.content.map((contentNode, contentIndex) => {
+                                                                    //console.log(contentNode.value,index);
+                                                                    content.content.push({id: index, value: contentNode.value})
                                                                     if (contentNode.value == '') {
                                                                         return <br key={contentIndex} />
                                                                     } else {
@@ -249,18 +261,26 @@ export default async function Page({ params }) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="mt-4 hidden xl:flex flex-col gap-3 lg:flex-row xl:md:w-1/3 xl:mt-0 xl:flex-col xl:gap-x-0 z-10">
-                                    <div data-ply-placeholder="3" className="empty:hidden"></div>
-                                    <div className="flex rounded-xl border border-gray-200 shadow-2xl" header="">
+                                <div className="mt-4 hidden xl:flex flex-col gap-3 xl:md:w-1/3 xl:mt-0 xl:flex-col xl:gap-x-0 z-10">
+                                    <div className="flex top-8 rounded-xl border border-gray-200 shadow-2xl" header="">
                                         <div className="mt-9 flex flex-col px-10 pb-10">
                                             <h2 className="text-4xl">Content</h2>
                                             <ul className="mt-6 list-none">
                                                 <li>
-                                                    <a href="#Introduction" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
+                                                    <a href="#title" className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
                                                         <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
                                                             <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
-                                                        </div>Feature not yet available</a>
+                                                        </div>{content.title}</a>
                                                 </li>
+                                                {content.content.map((node) => (
+                                                    <li key={node.id}>
+                                                         <div class="relative py-4 after:absolute after:top-1/2 after:left-10 after:right-0 after:h-px after:bg-gray-200"></div>
+                                                        <a href={`#${node.id}`} className="flex cursor-pointer gap-x-5 font-semibold text-lg text-gray-700 hover:text-blue">
+                                                            <div className="my-auto flex h-5 w-5 min-w-[1.25rem] items-center justify-center rounded-2xl bg-blue-100">
+                                                                <div className="h-1 w-1 rounded-lg bg-blue-600"></div>
+                                                            </div>{node.value}</a>
+                                                    </li>
+                                                ))}
                                             </ul>
                                         </div>
                                     </div>
