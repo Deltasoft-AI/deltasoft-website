@@ -25,7 +25,6 @@ export default async function Page({ params }) {
     let articles = [];
     await client.getEntries({ content_type: 'pageBlogPost', 'fields.slug[in]': params.slug }).then(function (entries) {
         //console.log(entries.items);
-        // log the title for all the entries that have it
         entries.items.forEach(function (entry) {
             if (entry.fields.featuredImage) {
                 //console.log(entry.fields.relatedBlogPosts.fields);
